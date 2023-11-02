@@ -1,0 +1,7 @@
+version: '3'
+services:
+  reactjs:
+    image: my_react_app:latest
+    container_name: capstone
+    ports:
+      - "80:3000"
