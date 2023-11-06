@@ -1,5 +1,5 @@
 # Start your image with a node base image
-FROM node:14
+FROM node:14-slim
 
 # The /app directory should act as the main application directory
 WORKDIR /app
