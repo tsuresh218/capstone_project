@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the directory containing docker-compose.yml
-DOCKERCOMPOSE_PATH='/home/ubuntu/reactjs-demo'
+DOCKERCOMPOSE_PATH='/mnt/c/Users/USER/Documents/capstone/reactjs-demo'
 CONTAINER_NAME='capstone'
 
 # Navigate to the path

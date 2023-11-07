@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the variables
-IMAGE_NAME='my_react_app'
+IMAGE_NAME='my-react-app'
 TAG='latest'
 CONTAINER_NAME='capstone'
 DOCKERFILE_PATH='/mnt/c/Users/USER/Documents/capstone/reactjs-demo'
@@ -22,4 +22,3 @@ else
     echo "Failed to build the Docker image '$IMAGE_NAME:$TAG'."
     exit 1
 fi
-

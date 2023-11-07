@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Variables
-REPO_URL='https://github.com/tsuresh218/capstone_project.git'
-LOCAL_DIRECTORY='/home/ubuntu/reactjs-demo'
-REPO_DIRECTORY='/home/ubuntu/capstone_project'
+REPO_URL='https://github.com/tsuresh218/capstone_reactjs.git'
+LOCAL_DIRECTORY='/mnt/c/Users/USER/Documents/capstone/reactjs-demo'
+REPO_DIRECTORY='/mnt/c/Users/USER/Documents/capstone/capstone_reactjs'
 NEW_BRANCH_NAME_1='dev'
 DOCKERIGNORE_FILE='.dockerignore'
 GITIGNORE_FILE='.gitignore'

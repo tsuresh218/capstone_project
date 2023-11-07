@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-REPO_DIRECTORY='/home/ubuntu/capstone_project'
+REPO_DIRECTORY='/mnt/c/Users/USER/Documents/capstone/capstone_reactjs'
 NEW_BRANCH_NAME_1='master'
 
 
