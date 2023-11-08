@@ -1,37 +1,28 @@
-if [ "$GIT_BRANCH" == "dev" ]; then
-    echo "Building Dockers Image for Dev Branch..."
+#!/bin/bash
 
-    DOCKER_IMAGE_NAME=my-react-app:latest
-    DOCKER_USERNAME=$USERNAME
-    DOCKER_PASSWORD=$PASSWORD
-    DOCKER_REPO_NAME=dev
+# Docker credentials
+DOCKERHUB_USERNAME=$USERNAME
+DOCKER_PASSWORD=$PASSWORD
 
-    docker build -t $DOCKER_IMAGE_NAME .
-    echo "Docker Image Built: $DOCKER_IMAGE_NAME"
+# Jenkins sets the job's Git branch to the variable $GIT_BRANCH
+branch=`echo "$GIT_BRANCH" | cut -d'/' -f 2`
 
-    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+# Docker image names
+DEV_IMAGE=$USERNAME/dev
+PROD_IMAGE=$USERNAME/prod
 
-    docker tag $DOCKER_IMAGE_NAME $DOCKER_USERNAME/$DOCKER_REPO_NAME:${DOCKER_IMAGE_NAME##*:}
-    docker push $DOCKER_USERNAME/$DOCKER_REPO_NAME:${DOCKER_IMAGE_NAME##*:}
+# Docker login
+echo $DOCKER_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
 
-    echo "Docker Image pushed to DockerHub"
+if [ "$branch" == "dev" ]; then
+	echo "Building and pushing Docker image for Dev branch..."
+    docker build -t $DEV_IMAGE:latest .
+    echo "Publishing Dev image..."
+    docker push $DEV_IMAGE:latest
 fi
 
-if [ "$GIT_BRANCH" == "master" ]; then
-    echo "Building Docker Image for Master Branch..."
-
-    DOCKER_IMAGE_NAME=my-react-app:latest
-    DOCKER_USERNAME=$USERNAME
-    DOCKER_PASSWORD=$PASSWORD
-    DOCKER_REPO_NAME=prod
-
-    docker build -t $DOCKER_IMAGE_NAME .
-    echo "Docker Image Built: $DOCKER_IMAGE_NAME"
-
-    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-
-    docker tag $DOCKER_IMAGE_NAME $DOCKER_USERNAME/$DOCKER_REPO_NAME:${DOCKER_IMAGE_NAME##*:}
-    docker push $DOCKER_USERNAME/$DOCKER_REPO_NAME:${DOCKER_IMAGE_NAME##*:}
-
-    echo "Docker Image pushed to DockerHub"
+if [ "$branch" == "master" ]; then
+	echo "Building and pushing Docker image for Prod branch..."
+    docker build -t $PROD_IMAGE:latest .
+    docker push $PROD_IMAGE:latest
 fi
